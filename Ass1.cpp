@@ -60,7 +60,7 @@ public:
             return true;
         }
     }
-    //+++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++
     bool operator< (BigDecimalInt anotherDec)
     {
         for (int i = 0; i < 1; i++)
@@ -89,7 +89,7 @@ public:
         return false;
     }
 
-    //+++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++
     BigDecimalInt operator= (BigDecimalInt anotherDec)
     {
         anotherDec = n1;
@@ -121,14 +121,16 @@ public:
         }
         return n1.size();
     }
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++
+    friend ostream& operator<< (ostream& out , BigDecimalInt b)
+    {
+        out << b.n1;
+    }
 };
 int main()
 {
-    string n1 , n2;
-    cin >> n1 >> n2;
-    BigDecimalInt number1(n1);
-    BigDecimalInt number2(n2);
-    cout << number1.size();
-    
-
+    BigDecimalInt number1("1231234234");
+    BigDecimalInt number2("123781237123");
+    BigDecimalInt number3 = number2;
+    cout << number1 << " " << number3;
 }
