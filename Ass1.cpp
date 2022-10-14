@@ -88,32 +88,71 @@ public:
 //+++++++++++++++++++++++++++++++++++++++++++++++++++
     bool operator< (BigDecimalInt anotherDec)
     {
-        for (int i = 0; i < 1; i++)
+    for (int i = 0; i < 1; i++)
+    {
+        if (n1[i] == '+' && anotherDec.n1[i] != '+')
         {
-            if (n1[i] == '+' && anotherDec.n1[i] != '+')
+            n1.erase(0,1);
+        }
+        else if (n1[i] != '+' && anotherDec.n1[i] == '+')
+        {
+            anotherDec.n1.erase(0,1);
+        }
+        else if (n1[i] == '+' && anotherDec.n1[i] == '+')
+        {
+            anotherDec.n1.erase(0,1);
+            n1.erase(0,1);
+        }
+        else if (n1[i] == '-' && anotherDec.n1[i] == '+')
+        {
+            return n1 < anotherDec.n1 ;
+        }
+        else if (n1[i] == '+' && anotherDec.n1[i] == '-')
+        {
+            return anotherDec.n1 < n1 ;
+        }
+        else if (n1[i] == '-' && anotherDec.n1[i] == '-')
+        {
+            n1.erase(0,1);
+            anotherDec.n1.erase(0,1);
+            if (n1 < anotherDec.n1)
             {
-                n1.erase(0,1);
+                return false;
             }
-            else if (n1[i] != '+' && anotherDec.n1[i] == '+')
+            else
             {
-                anotherDec.n1.erase(0,1);
-            }
-            else if (n1[i] == '-' && anotherDec.n1[i] == '+')
-            {
-                anotherDec.n1 > n1;
-            }
-            else if (n1[i] == '+' && anotherDec.n1[i] == '-')
-            {
-                n1 > anotherDec.n1;
+                return true;
             }
         }
-        if (n1 < anotherDec.n1)
-        {
-            return true;
-        }
-        return false;
     }
-
+    for (int j = 0 ; j < n1.size(); j++)
+    {
+        if (anotherDec.n1[0] == '0' )
+        {
+            anotherDec.n1.erase(0,1);
+        }
+        else
+        {
+            break;
+        }
+    }
+    for (int j = 0 ; j < n1.size(); j++)
+    {
+        if (n1[0] == '0' )
+        {
+            n1.erase(0,1);
+        }
+        else
+        {
+            break;
+        }
+    }
+    if (n1 < anotherDec.n1)
+    {
+        return true;
+    }
+    return false;
+}
 //+++++++++++++++++++++++++++++++++++++++++++++++++++
     BigDecimalInt operator= (BigDecimalInt anotherDec)
     {
