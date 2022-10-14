@@ -32,6 +32,81 @@ public:
         }
         return false;
     }
+//+++++++++++++++++++++++++++++++++++++++++++++++++++    
+     BigDecimalInt operator- (BigDecimalInt anotherDec)
+     {
+         
+    char sign = '-';
+    bool check = true ;
+    string str = "";
+    if (anotherDec.n1[0] == '+')
+    {
+        anotherDec.n1.erase(0,1);
+    }
+    if (n1[0] == '+')
+    {
+        n1.erase(0,1);
+    }
+
+    int carry = 0;
+    if (n1 > anotherDec.n1)
+    {
+        reverse(n1.begin(), n1.end());
+        reverse(anotherDec.n1.begin(), anotherDec.n1.end());
+        for (int i = 0 ; i < n1.length() ; i++ ) {
+            int sub = ((n1[i] - '0') - (anotherDec.n1[i] - '0') - carry);
+            if (sub < 0) {
+                sub = sub + 10;
+                carry = 1;
+            }
+            else
+                carry = 0;
+
+            str.push_back(sub + '0');
+        }
+    }
+    else
+    {
+        reverse(n1.begin(), n1.end());
+        reverse(anotherDec.n1.begin(), anotherDec.n1.end());
+        check = false ;
+        for (int i = 0 ; i < n1.length() ; i++ ) {
+            int sub = ((anotherDec.n1[i] - '0') - (n1[i] - '0') - carry);
+            if (sub < 0) {
+                sub = sub + 10;
+                carry = 1;
+            }
+            else
+                carry = 0;
+
+            str.push_back(sub + '0');
+        }
+    }
+    reverse(str.begin(), str.end());
+
+    while (str.length() != 1 and str[0] == '0')
+    {
+        str.erase(str.begin());
+    }
+    if (check)
+    {
+        return str;
+    }
+    else
+    {
+        if (str == "0")
+        {
+            return str ;
+        }
+        else
+        {
+            return sign + str ;
+
+        }
+
+    }
+
+     }
 //+++++++++++++++++++++++++++++++++++++++++++++++++++
 // Problem with negative and negative
     bool operator> (BigDecimalInt anotherDec)
