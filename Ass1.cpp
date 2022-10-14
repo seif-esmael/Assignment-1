@@ -108,7 +108,6 @@ public:
 
      }
 //+++++++++++++++++++++++++++++++++++++++++++++++++++
-// Problem with negative and negative
     bool operator> (BigDecimalInt anotherDec)
     {
         for (int i = 0; i < 1; i++)
@@ -123,11 +122,16 @@ public:
             }
             else if (n1[i] == '-' && anotherDec.n1[i] == '+')
             {
-                anotherDec.n1 > n1;
+                return anotherDec.n1 > n1;
             }
             else if (n1[i] == '+' && anotherDec.n1[i] == '-')
             {
-                n1 > anotherDec.n1;
+                return n1 > anotherDec.n1;
+            }
+            else if (n1[i] == '+' && anotherDec.n1[i] == '+')
+            {
+                anotherDec.n1.erase(0,1);
+                n1.erase(0,1);
             }
             else if (n1[i] == '-' && anotherDec.n1[i] == '-')
             {
@@ -144,21 +148,32 @@ public:
             }
         }
         for (int j = 0 ; j < n1.size(); j++)
+    {
+        if (anotherDec.n1[0] == '0' )
         {
-            if (anotherDec.n1[j] == '0' || n1[j] == '0')
-            {
-                n1.erase(0,1);
-                anotherDec.n1.erase(0,1);
-            }
-            else
-            {
-                break;
-            }   
+            anotherDec.n1.erase(0,1);
         }
+        else
+        {
+            break;
+        }
+    }
+    for (int j = 0 ; j < n1.size(); j++)
+    {
+        if (n1[0] == '0' )
+        {
+            n1.erase(0,1);
+        }
+        else
+        {
+            break;
+        }
+    }
         if (n1 > anotherDec.n1)
         {
             return true;
         }
+        return false;
     }
 //+++++++++++++++++++++++++++++++++++++++++++++++++++
     bool operator< (BigDecimalInt anotherDec)
@@ -186,6 +201,7 @@ public:
         {
             return anotherDec.n1 < n1 ;
         }
+
         else if (n1[i] == '-' && anotherDec.n1[i] == '-')
         {
             n1.erase(0,1);
@@ -268,8 +284,8 @@ public:
 };
 int main()
 {
-    BigDecimalInt number1("999999999999");
-    BigDecimalInt number2("0999999999999");
+    BigDecimalInt number1("-00000001");
+    BigDecimalInt number2("00000000000009");
     if (number1 > number2)
     {
         cout << "BIG";
