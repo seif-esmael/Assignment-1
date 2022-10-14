@@ -54,6 +54,31 @@ public:
             {
                 n1 > anotherDec.n1;
             }
+            else if (n1[i] == '-' && anotherDec.n1[i] == '-')
+            {
+                n1.erase(0,1);
+                anotherDec.n1.erase(0,1);
+                if (n1 > anotherDec.n1)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }  
+            }
+        }
+        for (int j = 0 ; j < n1.size(); j++)
+        {
+            if (anotherDec.n1[j] == '0' || n1[j] == '0')
+            {
+                n1.erase(0,1);
+                anotherDec.n1.erase(0,1);
+            }
+            else
+            {
+                break;
+            }   
         }
         if (n1 > anotherDec.n1)
         {
@@ -129,8 +154,15 @@ public:
 };
 int main()
 {
-    BigDecimalInt number1("1231234234");
-    BigDecimalInt number2("123781237123");
-    BigDecimalInt number3 = number2;
-    cout << number1 << " " << number3;
+    BigDecimalInt number1("999999999999");
+    BigDecimalInt number2("0999999999999");
+    if (number1 > number2)
+    {
+        cout << "BIG";
+    }
+    else
+    {
+        cout << "SMALL";
+    }
+    
 }
