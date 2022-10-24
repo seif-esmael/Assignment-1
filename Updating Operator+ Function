@@ -215,10 +215,11 @@ public:
                 
                 string result = addTwoStrings(greater, smaller, false);
                 this->deleteLeadingZeros(result);
-                result = greaterSign + result;
+                if (greaterSign == "-")
+                {
+                    result = greaterSign + result;
+                }
                 resDecimal.n1 = result;
-
-
             }
 
         }
