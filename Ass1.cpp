@@ -308,6 +308,28 @@ public:
                 anotherDec.n1.erase(0, 1);
             }
         }
+        for (int j = 0 ; j < n1.size(); j++)
+    {
+        if (anotherDec.n1[0] == '0' )
+        {
+            anotherDec.n1.erase(0,1);
+        }
+        else
+        {
+            break;
+        }
+    }
+    for (int j = 0 ; j < n1.size(); j++)
+    {
+        if (n1[0] == '0' )
+        {
+            n1.erase(0,1);
+        }
+        else
+        {
+            break;
+        }
+    }
         if (n1 == anotherDec.n1)
         {
             return true;
@@ -315,7 +337,6 @@ public:
         return false;
     }
 //+++++++++++++++++++++++++++++++++++++++++++++++++++
-// Problem with negative and negative
     bool operator> (BigDecimalInt anotherDec)
     {
         for (int i = 0; i < 1; i++)
@@ -486,10 +507,14 @@ public:
 
 int main()
 {
-     BigDecimalInt number1("-123456789012345678901234567890");
-     BigDecimalInt number2("113456789011345678901134567890");
-    /*BigDecimalInt number1("9");
-    BigDecimalInt number2("-1");*/
-     BigDecimalInt number3 = number2 - number1;
-     cout << number3;
+    BigDecimalInt number1("00005");
+    BigDecimalInt number2("5");
+    if (number1 > number2)
+    {
+        cout << "Number 1";
+    }
+    else if (number1 == number2)
+        cout << "Equal";
+    else if (number2 > number1)
+        cout << "Number 2";
 }
