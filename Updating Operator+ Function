@@ -131,7 +131,7 @@ public:
         n1 = to_string(decInt);
     }
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    BigDecimalInt operator+ (BigDecimalInt anotherDec)
+   BigDecimalInt operator+ (BigDecimalInt anotherDec)
     {
 
         string s1 = this->eliminateSign(n1);
@@ -210,8 +210,9 @@ public:
             }
             if (equal) resDecimal.n1 = "0";
             else {
-
-                smaller = this->getTenthComplement(smaller, greater.size());
+                if(smaller != "0")
+                    smaller = this->getTenthComplement(smaller, greater.size());
+                
                 string result = addTwoStrings(greater, smaller, false);
                 this->deleteLeadingZeros(result);
                 result = greaterSign + result;
