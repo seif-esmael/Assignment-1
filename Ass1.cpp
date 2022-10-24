@@ -103,9 +103,27 @@ public:
         n1 = "";
     }
     //**************************************************************
-    BigDecimalInt(string decStr)
+      BigDecimalInt(string decStr)
     {
         n1 = decStr;
+        if (n1[0] == '+' || n1[0] == '-' || isdigit(n1[0]))
+        {
+            for (size_t i = 1; i < n1.length(); i++)
+            {
+                if (!isdigit(n1[i]))
+                {
+                    cout << "invalid input , setting the number to 0" << endl;
+                    n1 = "0";
+                    break;
+                }
+            }
+        }
+        else
+        {
+            cout << "invalid input , setting the number to 0" << endl;
+            n1 = "0";
+        }
+
     }
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     BigDecimalInt(int decInt)
